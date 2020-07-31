@@ -1,0 +1,18 @@
+cluster:
+  name: footloose-k8s-calico
+  privateKey: cluster-key
+machines:
+- count: 3
+  spec:
+    image: korvus/debian10:0.6.3 
+    name: calico-node%d
+    privileged: true
+    networks:
+    - footloose-cluster-calico
+    portMappings:
+    - containerPort: 22
+    volumes:
+    - type: volume
+      destination: /var/lib/docker
+    - type: volume
+      destination: /var/lib/rancher/k3s
